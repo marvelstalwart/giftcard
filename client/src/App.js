@@ -6,13 +6,13 @@ function App() {
   const [newGiftCard, setNewGiftCard] = useState({ code: '', balance: 0, message: '' });
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/gift-cards')
+    axios.get('https://giftcard-server.onrender.com/api/gift-cards')
       .then(response => setGiftCards(response.data))
       .catch(error => console.error('Error fetching gift cards:', error));
   }, []);
 
   const handleCreateGiftCard = () => {
-    axios.post('http://localhost:5000/api/gift-cards', newGiftCard)
+    axios.post('https://giftcard-server.onrender.com/api/gift-cards', newGiftCard)
       .then(response => setGiftCards([...giftCards, response.data]))
       .catch(error => console.error('Error creating gift card:', error));
   };
