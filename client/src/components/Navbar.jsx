@@ -49,7 +49,7 @@ const user = JSON.parse(localStorage.getItem('User'))
                   </div>
                   :
             <div className='p-4 rounded-xl'>
-            <a href="http://localhost:5000/api/auth/google">
+            <a href="https://giftcard-roan.vercel.app/api/auth/google">
                             <button  className='bg-white flex items-center justify-center gap-4 w-32 h-12 font-bold text-lg text-gray-700 rounded-xl'>
                           
                           <img alt='google' className='w-4 h-4 ' src={GoogleIcon}/>
