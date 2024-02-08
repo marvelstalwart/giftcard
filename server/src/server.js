@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer');
 
 const dotenv  = require('dotenv');
 const session = require('express-session');
-const { string } = require('yup');
+
 const MongoDBStore = require('connect-mongodb-session')(session)
 
 dotenv.config()
