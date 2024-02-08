@@ -9,7 +9,7 @@ const HttpGoogleRes = (req, res)=> {
    const token = req.user
  
     console.log("Google called us back!")
-    return res.redirect(`http://localhost:3000/${token}`)
+    return res.redirect(`https://giftcard-roan.vercel.app/${token}`)
     } 
 
 
