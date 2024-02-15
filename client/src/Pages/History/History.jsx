@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from "axios"
-import host from "../../customHooks/useUrl"
+import getHost from '../../customHooks/useUrl'
 export default function History() {
 const [orders, setOrders] = useState(null)
 
@@ -14,7 +14,7 @@ useEffect(()=> {
                 Authorization: `Bearer ${token}`
             }
         }
-        axios.get(`${host}/api/auth/user/orders`, config).then((res)=> {
+        axios.get(`${getHost()}/api/auth/user/orders`, config).then((res)=> {
                 setOrders(res.data)
         })
         .catch((err)=>{

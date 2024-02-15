@@ -10,6 +10,7 @@ export default function Home() {
     const user = JSON.parse(localStorage.getItem('User'))
     setUser(user)
    },[])
+   
   return (
     <div>
       {user?.role === "admin" ?

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import host from "../../../customHooks/useUrl"
+import getHost from '../../../customHooks/useUrl'
 import AdminIcon from "../../../assets/img/admin.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -66,7 +66,7 @@ const handleGiftCardChange = (e)=> {
 
             try {
 
-                const res = await axios.put(`${host}/api/admin/order`, payload, config)
+                const res = await axios.put(`${getHost()}/api/admin/order`, payload, config)
                 setIsValidatingOrder(false)
                 setIsOrderSuccess(true)
                 
@@ -80,7 +80,7 @@ const handleGiftCardChange = (e)=> {
             }
     }
 
-  
+   
 
     const handleValidateGiftCard = async (e)=>{
         e.preventDefault()
@@ -97,7 +97,7 @@ const handleGiftCardChange = (e)=> {
                 }
             }
         try {
-             const res =  await axios.post(`${host}/api/gift-card/validate`, payload, config)
+             const res =  await axios.post(`${getHost()}/api/gift-card/validate`, payload, config)
                 setGiftCardSuccess(true)
                 setIsValidatingGiftCard(false)
                 setGiftCardMessage(res.data.message)
