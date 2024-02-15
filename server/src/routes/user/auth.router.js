@@ -13,7 +13,7 @@ const GoogleStrategy = require('passport-google-oidc')
 const { generateToken } = require('../../utils/generateToken')
 const protect = require('../../middleware/auth')
 const { HttpGetUserOrders } = require('../giftcard/giftcard.controller')
-const __isProd__ = process.env.NODE.ENV === "production"
+const __isProd__ = process.env.NODE_ENV === "production"
   const host = __isProd__ ? "https://giftcard-roan.vercel.app" : "http://localhost:3000"
 const AUTH_OPTIONS = {
   
