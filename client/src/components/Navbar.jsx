@@ -4,6 +4,7 @@ import GoogleIcon from "../assets/icons/google.svg"
 import { useParams } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import { Link } from 'react-router-dom'
+import host from "../customHooks/useUrl"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 export default function Navbar() {
@@ -65,8 +66,8 @@ useEffect(()=> {
                   </div>
                   :
             <div className='p-4 rounded-xl'>
-            <a href="http://localhost:5000/api/auth/google">
-                            <button  className='bg-white flex items-center justify-center gap-4 w-full px-2 h-full py-1 font-bold text-lg text-gray-700 rounded-xl'>
+            <a href={`${host}/api/auth/google`}>
+                            <button  className='bg-white flex items-center justify-center gap-4 w-32 h-12 font-bold text-lg text-gray-700 rounded-xl'>
                           
                           <img alt='google' className='w-4 h-4 ' src={GoogleIcon}/>
                           Sign In
