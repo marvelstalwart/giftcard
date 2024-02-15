@@ -19,7 +19,7 @@ const AUTH_OPTIONS = {
   
     callbackURL:`${host}/api/auth/google/callback`,
     clientID: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
+    clientSecret: process.env.CLIENUIT_SECRET,
     scope:['profile', 'email']
   }
   
