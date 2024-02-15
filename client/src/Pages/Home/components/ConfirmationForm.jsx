@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import GiftCard from './GiftCard'
 import Input from './Input'
+import { useDate } from '../../../customHooks/useDate'
 import getHost from '../../../customHooks/useUrl'
 import SuccessfulPopup from './SuccessfulPopup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,6 +12,7 @@ export default function ConfirmationForm(props) {
     const { forms, selectedCard, formValues, handleChange, handleConfirmation, defaultDate} = props
     const [isLoading, setIsLoading] = useState(false)
     const user = JSON.parse(localStorage.getItem('User'))
+
     const handleSubmit = async (e)=> {
       setIsLoading(true)
     

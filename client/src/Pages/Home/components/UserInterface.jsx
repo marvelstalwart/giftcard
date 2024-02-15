@@ -77,8 +77,14 @@ export default function UserInterface() {
  
 //  Show confirmation form
     const handleConfirmation = (e)=> {
+
+
       e.preventDefault()
      
+     if (!formValues.date) {
+
+      setFormValues({...formValues, date: defaultDate})
+     }
       setShowConfirmation(!showConfirmation)
     }
     // Update Selected card
@@ -194,7 +200,7 @@ export default function UserInterface() {
             </div>
          </div>
          <div>
-          <form className='flex flex-col gap-4 h-full '>
+          <form className='flex flex-col gap-4 h-full pb-[7rem] '>
             {forms.map((input,i)=> {
                 return <Input name={input.name} type={input.type} placeholder={input.placeholder} handleChange={handleChange} value={input.value} key={i} />
             })}
