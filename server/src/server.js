@@ -15,6 +15,8 @@ dotenv.config()
 const app = express();
 const api = require('./routes/api')
 const PORT = process.env.PORT || 5000;
+const __isProd__ = process.env.NODE_ENV === "production"
+  const host = __isProd__ ? "https://giftcard-roan.vercel.app" : "http://localhost:3000"
 const MONGO_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@mern.afeank9.mongodb.net/giftCardApp`
 //Session store
 const store = new MongoDBStore({
@@ -41,7 +43,7 @@ app.use(session({
 
 // Middleware
 app.use(cors({
-  origin:'http://localhost:3000',
+  origin:host,
   credentials:true
 }));
 
