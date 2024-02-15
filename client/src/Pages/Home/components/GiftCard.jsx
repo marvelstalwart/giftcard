@@ -9,7 +9,7 @@ export default function GiftCard({selectedCard}) {
         <div>
 
         <div className=' text-xs'>Amount</div>
-        <div className={`relative font-bold flex gap-4 `}><div className=' absolute top-0 left-0 font-bold '>$</div><div className='ml-2 text-3xl'>{selectedCard.amount}</div></div>
+        <div className={`relative font-bold flex gap-4 `}><div className=' absolute top-0 left-0 font-bold '>₦</div><div className='ml-2 text-3xl'>{selectedCard.amount + "K"}</div></div>
 
           </div>
         

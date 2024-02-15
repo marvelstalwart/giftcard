@@ -9,7 +9,9 @@ const HttpGoogleRes = (req, res)=> {
    const token = req.user
  
     console.log("Google called us back!")
-    return res.redirect(`https://giftcard-roan.vercel.app/${token}`)
+    const __isProd__ = process.env.NODE.ENV === "production"
+    const host = __isProd__ ? "https://giftcard-roan.vercel.app" : "http://localhost:3000"
+    return res.redirect(`${host}/${token}`)
     } 
 
 
@@ -21,17 +23,20 @@ const HttpGoogleRes = (req, res)=> {
       }
 
     const HttpAddUser = async (req,res)=> {
-        const {fullname, email, password} = req.body
+        const {fullname, email, password, role} = req.body
                 const userExists = await UserSchema.findOne({email: email})
         if (userExists) {
             return res.status(400).json({type:'User', message:"User already Exists"})
         }
 
-
+        // if (role && role.toLowerCase() !== "user") {
+        //   return res.status(400).json({type:'User', message:"Invalid request!"})
+        // }
         const newUser = new UserSchema({
             fullname,
             email,
-            password
+            password,
+            role
         })
         try {
             const resp = await newUser.save()
