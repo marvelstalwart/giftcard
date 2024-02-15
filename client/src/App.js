@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import Home from './Pages/Home/Home';
+import History from './Pages/History/History';
 import Signup from './Pages/Auth/Signup';
 import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
 import NavbarLayout from './components/NavbarLayout';
@@ -16,7 +17,7 @@ function App() {
 
             <Route path='/' element={<Home/>}/>
               <Route path='/:token' element={<Home/>}/>
-
+              <Route path="/orders" element={<History/>}/>
               <Route path='/signup' element={<Signup/>}/>
               </Route>
             </Routes>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style>
+		  body {
+            background-color: #1a1a1a;
+           
+            font-family: arial;
+            padding:0;
+            margin:0;
+        }
+
+        	h1 {
+        		padding: 2px;
+        		color: white;
+        	}
+        	.img-cont {
+        		width:100%;
+        		display: flex;
+        		position: relative;
+        		justify-content: center;
+        	}
+        	img{
+
+        		width: 30rem;
+        		height: 20rem;
+        	}
+        	.card-container {
+        		position: relative;
+        		display: flex;
+        		justify-content: center;
+        		width:100%;
+        	}
+
+        	.text-cont {
+        		position: absolute;
+        		bottom: 0;
+        		left: 0;
+        		padding-left:10rem ;
+        		padding-bottom: 30px;
+        		font-size: 35px;
+        		color: white;
+        	}
+        	.overlay-text {
+        		background-color: brown;
+        		padding:10px;
+
+        		border-radius: 30px;
+        	}
+
+        	.gift-msg {
+        		font-size: 20px;
+        		color: white;
+        		text-align: center;
+        	}
+
+        	.msg {
+        		font-size: 30px;
+        		font-weight: 600;
+        		color: brown;
+        	}
+
+        	.code-info, .code-heading, .code {
+        		text-align: center;
+        		color: white;
+        	}
+	</style>
+
+</head>
+<body >
+
+	<h1>
+			
+			Hello <%=name%>,
+			</h1>
+
+				<div class="card-container">
+
+					<div class="text-cont">
+						<div class="overlay-text"><span>N</span><%=amount%></div>
+					</div>
+					
+                    <% if (amount === 10000) { %>
+                        <img alt="giftcard img" src="https://i.ibb.co/WfStZ4r/giftcard50.jpg" />
+                    <% } else if (amount === 50000) { %>
+                        <img src="https://i.ibb.co/f2CjgLz/giftcard150.jpg" alt="giftcard150" />
+                    <% } else if (amount === 100000) { %>
+                     <img src="https://i.ibb.co/CJHDL5b/customgiftcard.jpg" alt="customgiftcard"  />
+                    <% } else { %>
+                       <img src="https://i.ibb.co/b7yLj9g/giftcard100.jpg" alt="giftcard100"  />
+                    <% } %>
+
+				</div>
+
+				<div class="gift-msg">You've received a gift card from <b><%=sender%></b> with the message:
+
+					<p class="msg"><%=message%></p>
+				</div>
+				
+				<div class="code-info">
+					This voucher is redeemable at Suregifts Merchants Locations Nationwide and is valid for 1 year
+					<p><b>Check for Suregifts Merchants Locations via: www.suregifts.com.ng/merchant</b></p>
+				</div>
+
+				<div class="code-heading">	
+					Below you will find your giftcard code, you can use it to make purchases at our stores. If you have any questions or need assistance, feel free to reach out to us.
+
+
+
+				</div>
+
+				<h1 class="code">
+					GIFTCARD CODE: <%=code%>
+				</h1>
+
+		
+
+	
+</body>
+</html>

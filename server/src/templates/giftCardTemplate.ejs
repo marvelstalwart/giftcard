@@ -1,20 +1,180 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <style>
-    /* Add styling for your gift card template */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      padding: 20px;
-      text-align: center;
-    }
-    /* Add more styling as needed */
-  </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            background-color: #1a1a1a;
+           
+            font-family: arial;
+            padding:0;
+            margin:0;
+        }
+            .heading-cont {
+                padding:10px;
+            }
+        .heading {
+            background-color: white;
+            padding: 20px;
+
+        }
+        .heading .name {
+            font-weight: 600;
+        }
+        .heading .header {
+            font-weight: 500;
+        }
+        .order-container {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .order, .order .order-text{
+            text-align: center;
+        }
+        .order-text {
+            color: #c8c8c8;
+        }
+
+        .divider {
+            border: 0.5px solid #c8c8c8;
+            width:100%;
+
+        }
+
+        .order-details {
+            padding: 10px;
+            display: flex;
+            gap: 5px;
+
+        }
+        .order-details img {
+            height: 100px;
+            width: 200px;
+        }
+        .order-details .detail-sect {
+            display: flex;
+            text-align: start;
+            flex-direction: column;
+         justify-content: space-between;
+        }
+        .detail-sect{
+            font-size: 12px;
+            color: white;
+        }
+        .detail-sect .detail-top, .detail-sect .detail-bottom {
+            color: white;
+        }
+        .detail-top p {
+            padding:3px;
+            margin: 0px;
+        }
+        .detail-top p:nth-child(1), .detail-bottom p{
+                font-weight: 800;
+        }
+        .total {
+            color: white;
+            text-align: center;
+        }
+
+        .payment {
+            background-color: white;
+
+            text-align: start;
+            padding: 10px;
+        }
+
+        .payment .payment-heading {
+            font-weight: 600;
+            padding-bottom: 5px;
+        }
+        .payment .payment-info p{
+                font-weight: 700;
+
+        }
+
+        .footer {
+            background-color: #f4f4f4;
+            padding: 10px;
+            color: black;
+        }
+    </style>
 </head>
+
 <body>
-  <h1>Gift Card</h1>
-  <p>Code: <%= giftCard.code %></p>
-  <p>Balance: $<%= giftCard.balance %></p>
-  <p>Message: <%= giftCard.message || 'No message' %></p>
+
+        <div class="heading-cont">
+                      <div class="heading">
+          <b class="header">Hello <span class="name"><%=name%></span>,</b>
+          <p>Your Order has been received, once payment is confirmed your order will be processed. Your order details are shown below for your reference.
+ 
+
+
+          </p>
+    </div>  
+
+
+        </div>
+  
+    <div class="order">
+            <div class="order-text">
+                <h2>Order No: # <%=orderId%></h2>
+                <p>Date: </p>
+
+
+
+            </div>
+
+            <div class="divider"></div>
+            <div class="order-container">
+                <div class="order-details">
+                    <img alt="giftcard img" src="https://i.ibb.co/82fcdWz/giftcard150.jpg" />
+    
+                    <div class="detail-sect">
+                            <div class="detail-top">
+                                <p>Suregifts Generic</p>
+                                <p>Qty: 1</p>
+                            </div>
+                            <div class="detail-bottom">
+                                <p>
+                                    N<%=amount%>
+                                </p>
+                            </div>
+    
+                    </div>
+    
+                </div>
+            </div>
+         
+            <div class="divider"></div>
+            <div class="total">
+                <h4>Total Amount: N<%=amount%></h4>
+            </div>
+            <div class="payment">
+                    <h3 class="payment-heading">
+                        Payment Details
+                    </h3>
+
+                    <div>
+                        Please pay directly into our bank account using your Order No <b><%=orderId%></b> as the payment reference. Your Gift Card won't be delivered until the funds have cleared in our account.
+                    </div>
+
+                    <div class="payment-info">
+                        <p>Bank: Access Bank</p>
+                        <p>Account Number: 0039494484</p>
+                        <p>Account Name: Osadare Eniola</p> 
+                    </div>
+
+            </div>
+
+
+            
+    </div>
+    <div class="footer">
+        <h3>Contact us</h3>
+
+        <p>contact@email.com</p>
+    </div>
 </body>
 </html>

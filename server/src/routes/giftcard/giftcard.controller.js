@@ -1,5 +1,10 @@
 const GiftCard = require('../../models/GiftCard')
-
+const {requestPaymentInformation} = require('../../utils/mailer')
+const {generateGiftCard} = require('../../utils/uuid')
+const orderSchema = require('../../models/OrdersSchema')
+const {findAdminById} = require('../../services/users.mongo')
+const {validateGiftCard, getUserGiftCards, getGiftCardDetails} = require('../../services/giftcard.mongo')
+const {getUserOrders} = require("../../services/orders.mongo")
 const HttpGetGiftCards = async (req, res) => {
     try {
       const giftCards = await GiftCard.find();
@@ -10,15 +15,58 @@ const HttpGetGiftCards = async (req, res) => {
   }
 
   const HttpAddGiftCard = async (req, res) => {
-    const { code, balance } = req.body;
-  
+    const id  = req.authenticatedUserId
+    const {fullName, recepientEmail, senderEmail, senderName, message, date, amount} = req.body;
+    console.log(recepientEmail, senderEmail)
     try {
-      const newGiftCard = new GiftCard({ code, balance });
-      await newGiftCard.save();
-      res.json(newGiftCard);
+      const newGiftCard = new GiftCard({ 
+        for: fullName, email: recepientEmail,
+         message, date, createdBy: id, amount,
+         code: generateGiftCard()
+      
+        });
+      
+      const giftCard = await newGiftCard.save();
+  
+         
+      try {
+
+        requestPaymentInformation(
+          senderName,
+           senderEmail, 
+           amount, res,
+            id,
+            giftCard._id
+           
+           )
+      }
+      catch(err) {
+        return res.status(400).json(err)
+      }
+      return res.status(200).json(newGiftCard);
     } catch (error) {
-      res.status(500).json({ error: error.message });
+     return res.status(500).json({ error: error.message });
     }
+  }
+
+  const HttpValidateGiftCard = async (req,res)=> {
+      const {giftCardCode} =  req.body
+      const id = req.authenticatedUserId
+      const adminExists = await findAdminById(id)
+      if (!adminExists) {
+          return res.status(401).json({type:"Admin", err: "Unauthorized!"})
+      }
+      try {
+          const isValidGiftCard = await validateGiftCard(giftCardCode)
+            if (!isValidGiftCard){
+             return res.status(400).json({message: "Invalid!"})
+            }
+            return res.status(200).json({message: "Valid!"})
+     
+        }
+        catch(err){
+         return res.status(400).json({message: "An error occured"})
+        }
   }
 
   const HttpGiftCardDownload = async (req, res) => {
@@ -40,46 +88,25 @@ const HttpGetGiftCards = async (req, res) => {
     }
   }
 
-  const HttpSendEmail = async (req, res) => {
-    try {
-      const giftCard = await GiftCard.findById(req.params.id);
-      const {fullName, email, message} = req.body
-      if (!giftCard) {
-        return res.status(404).json({ error: 'Gift card not found' });
-      }
-  
-      const transporter = nodemailer.createTransport({
-        // Setup your email transporter here
-        service: 'gmail',
-        auth: {
-          user: `${process.env.EMAIL}`,
-          pass: `${process.env.PASSWORD}`,
-        },
-      });
-  
-      const mailOptions = {
-        from: `${process.env.EMAIL}`,
-        to: email,
-        subject: 'Gift Card',
-        text: `Here is your gift card with code ${giftCard.code} and balance $${giftCard.balance}. Message: ${giftCard.message || 'No message'}`,
-      };
-  
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.error('Error sending email:', error);
-          res.status(500).json({ error: 'Error sending email' });
-        } else {
-          console.log('Email sent:', info.response);
-          res.json({ message: 'Email sent successfully' });
-        }
-      });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  }
+  const HttpGetUserGiftCards = async (req,res) =>{
+      const id = req.authenticatedUserId
+      
+      const giftcards = await getUserGiftCards(id)
+      return res.status(200).json(giftcards)
+  } 
+const HttpGetUserOrders = async (req,res)=> {
+  const id = req.authenticatedUserId
+  const orders = await getUserOrders(id)
+  return res.status(200).json(orders)
+
+}
+
   module.exports = {
     HttpGetGiftCards,
     HttpAddGiftCard,
     HttpGiftCardDownload,
-    HttpSendEmail
+    HttpValidateGiftCard,
+    HttpGetUserGiftCards,
+    HttpGetUserOrders
+ 
   }
