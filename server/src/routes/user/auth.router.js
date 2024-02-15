@@ -14,7 +14,7 @@ const { generateToken } = require('../../utils/generateToken')
 const protect = require('../../middleware/auth')
 const { HttpGetUserOrders } = require('../giftcard/giftcard.controller')
 const __isProd__ = process.env.NODE_ENV === "production"
-  const host = __isProd__ ? "https://giftcard-server.onrender.com" : "http://localhost:3000"
+  const host = __isProd__ ? "https://giftcard-server.onrender.com" : "http://localhost:5000"
 const AUTH_OPTIONS = {
   
     callbackURL:`${host}/api/auth/google/callback`,
