@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
-
+const https = require('https')
 const dotenv  = require('dotenv');
 const session = require('express-session');
 
@@ -57,7 +57,12 @@ mongoose.connect(MONGO_URL, {
 .catch((err)=> console.error(err))
 ;
 
+const sslServer = https.createServer({
+  key:'',
+  cert:''
+}, app)
+
 // Start server
-app.listen(PORT, () => {
+sslServer.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

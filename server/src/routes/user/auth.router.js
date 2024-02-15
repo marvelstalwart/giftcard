@@ -13,9 +13,11 @@ const GoogleStrategy = require('passport-google-oidc')
 const { generateToken } = require('../../utils/generateToken')
 const protect = require('../../middleware/auth')
 const { HttpGetUserOrders } = require('../giftcard/giftcard.controller')
-
+const __isProd__ = process.env.NODE.ENV === "production"
+  const host = __isProd__ ? "https://giftcard-roan.vercel.app" : "http://localhost:3000"
 const AUTH_OPTIONS = {
-    callbackURL:'/api/auth/google/callback',
+  
+    callbackURL:`${host}/api/auth/google/callback`,
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     scope:['profile', 'email']
