@@ -8,7 +8,7 @@ const {updateGiftCardInformation, findGiftCardById, getGiftCardDetails} = requir
 const {hashPassword, comparePassword} = require('../../utils/bcrypt')
 
 const {sendGiftCardToRecipient} = require("../../utils/mailer")
-const { isConstructorDeclaration, isGetAccessor } = require('typescript')
+
 // Create new Admin
 async function HttpCreateNewAdmin(req, res) {
 const {email, password} = req.body
