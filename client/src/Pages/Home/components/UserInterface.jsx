@@ -15,7 +15,7 @@ import Input from './Input';
 import { useDate } from '../../../customHooks/useDate';
 import ConfirmationForm from './ConfirmationForm';
 import axios from 'axios';
-import host from "../../../customHooks/useUrl"
+import getHost from '../../../customHooks/useUrl';
 import {useParams} from "react-router-dom"
 import {jwtDecode} from "jwt-decode"
 export default function UserInterface() {
@@ -74,7 +74,7 @@ export default function UserInterface() {
     // },[])
 
     // Success or Error Message 
-  
+ 
 //  Show confirmation form
     const handleConfirmation = (e)=> {
       e.preventDefault()

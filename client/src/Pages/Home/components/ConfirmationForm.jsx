@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import GiftCard from './GiftCard'
 import Input from './Input'
-import host from "../../../customHooks/useUrl"
+import getHost from '../../../customHooks/useUrl'
 import SuccessfulPopup from './SuccessfulPopup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
@@ -32,7 +32,7 @@ export default function ConfirmationForm(props) {
           }
               try {
                 // Send a request to the backend
-                const res = await axios.post(`${host}/api/gift-card/`,data, config)
+                const res = await axios.post(`${getHost()}/api/gift-card/`,data, config)
                
                   if (res.status ===200) {
                     setIsLoading(false)
@@ -51,6 +51,8 @@ export default function ConfirmationForm(props) {
               }
    
     }
+
+   
     return (
     
      
