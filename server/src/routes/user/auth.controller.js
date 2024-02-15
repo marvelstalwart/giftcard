@@ -9,7 +9,7 @@ const HttpGoogleRes = (req, res)=> {
    const token = req.user
  
     console.log("Google called us back!")
-    const __isProd__ = process.env.NODE.ENV === "production"
+    const __isProd__ = process.env.NODE_ENV === "production"
     const host = __isProd__ ? "https://giftcard-roan.vercel.app" : "http://localhost:3000"
     return res.redirect(`${host}/${token}`)
     } 
