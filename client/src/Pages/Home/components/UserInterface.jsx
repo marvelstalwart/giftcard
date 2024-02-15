@@ -6,7 +6,7 @@ import GiftCard50 from "../../../assets/img/giftcard100.jpg"
 import GiftCard100 from "../../../assets/img/giftcard150.jpg"
 import GiftCard150 from "../../../assets/img/customgiftcard.jpg"
 import MinatureCard from './MinatureCard';
-import {ToastContainer, toast} from 'react-toastify'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinesLeaning, faPen } from '@fortawesome/free-solid-svg-icons';
 import Btn from './Btn';
@@ -74,18 +74,7 @@ export default function UserInterface() {
     // },[])
 
     // Success or Error Message 
-    useEffect(()=> {
-     
-          toast("Your giftcard has been sent!", {
-            position: 'bottom-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            theme: "light",
-          type:"success"
-          })
-     
-    },[])
+  
 //  Show confirmation form
     const handleConfirmation = (e)=> {
       e.preventDefault()
