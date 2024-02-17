@@ -10,10 +10,10 @@ const HttpGoogleRes = (req, res)=> {
     const requestOrigin = req.session.app
 
     console.log("Google called us back!")
-
+    console.log(requestOrigin)
     const __isProd__ = process.env.NODE_ENV === "production"
 
-    const host = __isProd__  && requestOrigin ==="review"? "https://thegreatwall.vercel.app/" :__isProd__  && requestOrigin ==="giftcard" ? "https://giftcard-roan.vercel.app" : "http://localhost:3000"
+    const host = __isProd__  && requestOrigin ==="review"? "https://thegreatwall.vercel.app" :__isProd__  && requestOrigin ==="giftcard" ? "https://giftcard-roan.vercel.app" : "http://localhost:3000"
     return res.redirect(`${host}/${token}`)
     } 
 
