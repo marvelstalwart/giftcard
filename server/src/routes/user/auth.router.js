@@ -12,15 +12,17 @@ const jwt = require("jsonwebtoken")
 const GoogleStrategy = require('passport-google-oidc')
 const { generateToken } = require('../../utils/generateToken')
 const protect = require('../../middleware/auth')
+const {getRequestOrigin} = require('../../middleware/getOrigin')
 const { HttpGetUserOrders } = require('../giftcard/giftcard.controller')
 const __isProd__ = process.env.NODE_ENV === "production"
   const host = __isProd__ ? "https://giftcard-server.onrender.com" : "http://localhost:5000"
-const AUTH_OPTIONS = {
+const AUTH_OPTIONS =  {
   
     callbackURL:`${host}/api/auth/google/callback`,
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    scope:['profile', 'email']
+    scope:['profile', 'email'],
+    
   }
   
   async function verifyCallback (issuer, profile, cb){
@@ -60,9 +62,10 @@ passport.use(new GoogleStrategy(AUTH_OPTIONS, verifyCallback))
 
 
 
-authRouter.get('/google',passport.authenticate('google'), HttpGoogleRes )
+authRouter.get('/google',getRequestOrigin,passport.authenticate('google'), HttpGoogleRes )
 authRouter.get('/google/callback', passport.authenticate('google',{
-    session: false
+    session: false,
+    
   }), HttpGoogleCallback)
 
   authRouter.get('/google/success', HttpGoogleSuccess )

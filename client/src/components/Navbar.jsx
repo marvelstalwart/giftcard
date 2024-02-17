@@ -66,7 +66,7 @@ useEffect(()=> {
                   </div>
                   :
             <div className='p-4 rounded-xl'>
-            <a href={`${getHost()}/api/auth/google`}>
+            <a href={`${getHost()}/api/auth/google?app=giftcard`}>
                             <button  className='bg-white flex items-center justify-center gap-4 w-32 h-12 font-bold text-lg text-gray-700 rounded-xl'>
                           
                           <img alt='google' className='w-4 h-4 ' src={GoogleIcon}/>
