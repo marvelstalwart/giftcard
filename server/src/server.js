@@ -39,11 +39,11 @@ app.use(session({
 }))
 
 
-
+const allowedOrigins = ["https://giftcard-roan.vercel.app", "http://localhost:3000", "https://thegreatwall.vercel.app"]
 
 // Middleware
 app.use(cors({
-  origin:host,
+  origin:allowedOrigins,
   credentials:true
 }));
 
