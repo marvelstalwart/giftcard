@@ -34,8 +34,8 @@ const AUTH_OPTIONS = {
     if (!user) {
         user = new userSchema({
           fullname: profile.name.familyName + " " + profile.name.givenName,
-          email: profile.emails[0].value
-
+          email: profile.emails[0].value,
+          displayPicture:  profile.photos && profile.photos.length > 0 ? profile.photos[0].value : null
 
         })
       
@@ -43,7 +43,7 @@ const AUTH_OPTIONS = {
         
        
     }
-      user = {fullName: user.fullname, id: user._id, email: user.email, role: user.role, token: generateToken(user._id)}
+      user = {fullName: user.fullname, id: user._id, email: user.email, role: user.role, dp: user.displayPicture, token: generateToken(user._id)}
       const token = jwt.sign(user, process.env.SECRET_KEY)
     cb(null, token)
 

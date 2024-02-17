@@ -47,7 +47,7 @@ async function createNewAdmin (email, password) {
         throw new Error(err)
     }
 }
-
+ 
 
 
 module.exports = {
