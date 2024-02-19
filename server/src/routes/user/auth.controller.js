@@ -35,7 +35,7 @@ const HttpGoogleRes = (req, res)=> {
         // if (role && role.toLowerCase() !== "user") {
         //   return res.status(400).json({type:'User', message:"Invalid request!"})
         // }
-        const newUser = new UserSchema({
+        const newUser = new UserSchzema({
             fullname,
             email,
             password,

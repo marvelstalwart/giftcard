@@ -24,7 +24,7 @@ async function findReviewById (id){
 }
 async function getReviews (){
     try {
-        return await ReviewsSchema.find()
+        return await ReviewsSchema.find().populate('createdBy')
     }
     catch (err){
         throw new Error(err)
