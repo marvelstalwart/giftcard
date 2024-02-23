@@ -17,7 +17,8 @@ const api = require('./routes/api')
 const PORT = process.env.PORT || 5000;
 const __isProd__ = process.env.NODE_ENV === "production"
   const host = __isProd__ ? "https://giftcard-roan.vercel.app" : "http://localhost:3000"
-const MONGO_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@mern.afeank9.mongodb.net/giftCardApp`
+  
+const MONGO_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.ynvf8en.mongodb.net/giftcard`
 //Session store
 const store = new MongoDBStore({
  uri: MONGO_URL,
@@ -39,7 +40,7 @@ app.use(session({
 }))
 
 
-const allowedOrigins = ["https://giftcard-roan.vercel.app", "http://localhost:3000", "https://thegreatwall.vercel.app"]
+const allowedOrigins = ["https://giftcard-roan.vercel.app", "http://localhost:3000", "https://thegreatwall.onrender.com"]
 
 // Middleware
 app.use(cors({
